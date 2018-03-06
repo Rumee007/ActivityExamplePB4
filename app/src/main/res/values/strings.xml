@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Activity Example PB 4</string>
+    <string name="email_error">This field must not be empty</string>
+    <string name="pass_error">You must provide a password</string>
+    <string name="login_btn">Login User</string>
+    <string name="reg_btn">Register User</string>
+    <string name="greetings">Welcome to Pencilbox</string>
+    <string name="authentication_error">Invalid email address or password</string>
+</resources>
