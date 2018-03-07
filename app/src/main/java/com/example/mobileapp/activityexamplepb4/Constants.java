@@ -6,9 +6,7 @@ package com.example.mobileapp.activityexamplepb4;
 
 public final class Constants {
     public static class User{
-        public static final String EMAIL_ADDRESS = "user.pencilbox.com";
-        public static final String PASSWORD = "123456";
+        public static final String EMAIL_ADDRESS = "rumee@gmail.com";
+        public static final String PASSWORD = "1234";
     }
-
-
 }

@@ -4,16 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center"
+    android:orientation="vertical"
     tools:context="com.example.mobileapp.activityexamplepb4.HomeActivity">
 
     <TextView
-        android:id="@+id/greetings"
+        android:id="@+id/greetingsTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="22sp"
         android:textColor="#5b1b7b"
-        android:textStyle="bold|italic"/>
+        android:textSize="22sp"
+        android:textStyle="bold|italic" />
 
+    <TextView
+        android:id="@+id/showEmailTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textAlignment="center"
+        android:textSize="25sp" />
 </LinearLayout>

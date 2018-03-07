@@ -4,6 +4,7 @@
     <string name="pass_error">You must provide a password</string>
     <string name="login_btn">Login User</string>
     <string name="reg_btn">Register User</string>
+    <string name="clr_btn">Clear Input</string>
     <string name="greetings">Welcome to Pencilbox</string>
     <string name="authentication_error">Invalid email address or password</string>
 </resources>

@@ -3,6 +3,7 @@ package com.example.mobileapp.activityexamplepb4;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,93 +13,102 @@ import android.widget.Toast;
 
 import java.io.Serializable;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private EditText emailET, passET;
-    private TextView showEmailTV, showPassTV;
-    private Button loginBtn, regBtn;
+    private EditText emailEditText, passwordEditText;
+    private TextView showEmailTextView, showPasswordTextView;
+    private Button loginButton, regButton, clearButton;
+    private static final String TAG = MainActivity.class.getSimpleName();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        emailET = findViewById(R.id.emailValue);
-        passET = findViewById(R.id.passValue);
-        showEmailTV = findViewById(R.id.showEmail);
-        showPassTV = findViewById(R.id.showPass);
-        loginBtn = findViewById(R.id.lgnBtn);
-        regBtn = findViewById(R.id.regBtn);
-        loginBtn.setOnClickListener(this);
-        regBtn.setOnClickListener(new View.OnClickListener() {
+        // Declare variable
+        emailEditText = findViewById(R.id.emailText);
+        passwordEditText = findViewById(R.id.passwordText);
+        showEmailTextView = findViewById(R.id.showEmailTextView);
+        showPasswordTextView = findViewById(R.id.showPasswordTextView);
+        loginButton = findViewById(R.id.loginButton);
+        regButton = findViewById(R.id.regButton);
+        clearButton = findViewById(R.id.clearButton);
+
+        // Call OnClickListener | implements View.OnClickListener
+        loginButton.setOnClickListener(this);
+
+        // Direct call OnClickListener
+        regButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Toast.makeText(MainActivity.this, "Reg Button", Toast.LENGTH_SHORT).show();
             }
         });
+
+        // Create View OnClickListener
+        clearButton.setOnClickListener(clearListener);
     }
 
 
     public void loginUser(View view) {
-        String inputEmail = emailET.getText().toString();
-        String inputPass = passET.getText().toString();
-        if(inputEmail.isEmpty()){
-            emailET.setError(getString(R.string.email_error));
-        }else if(inputPass.isEmpty()){
-            passET.setError(getString(R.string.pass_error));
-        }else{
+        String inputEmail = emailEditText.getText().toString();
+        String inputPass = passwordEditText.getText().toString();
+        if (inputEmail.isEmpty()) {
+            emailEditText.setError(getString(R.string.email_error));
+        } else if (inputPass.isEmpty()) {
+            passwordEditText.setError(getString(R.string.pass_error));
+        } else {
             /*showEmailTV.setText(inputEmail);
             showPassTV.setText(inputPass);*/
-            authenticateUser(inputEmail,inputPass);
+            authenticateCheck(inputEmail, inputPass);
         }
     }
 
-    private void authenticateUser(String inputEmail, String inputPass) {
-        if(inputEmail.equals(Constants.User.EMAIL_ADDRESS) &&
-                inputPass.equals(Constants.User.PASSWORD)){
-
+    private void authenticateCheck(String inputEmail, String inputPass) {
+        if (inputEmail.equals(Constants.User.EMAIL_ADDRESS) && inputPass.equals(Constants.User.PASSWORD)) {
             //declare Explicit intent
-            Student student = new Student("Hassan",19);
-            Intent intent = new Intent(MainActivity.this,HomeActivity.class);
-            intent.putExtra("email",inputEmail);
-            intent.putExtra("pass",inputPass);
-            intent.putExtra("student",student);
+            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+            // Pass value
+            intent.putExtra("email", inputEmail);
+            intent.putExtra("password", inputPass);
+            // Pass object
+            //Student student = new Student("Hassan", 19);
+            //intent.putExtra("student", student);
             startActivity(intent);
-        }else{
+        } else {
             Toast.makeText(this, getString(R.string.authentication_error), Toast.LENGTH_SHORT).show();
         }
     }
 
+    // Action : Login Button
     @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.lgnBtn:
+    public void onClick(View view) {
+        Log.i(TAG, "Login Button action...");
 
-                break;
-            case R.id.regBtn:
+        String inputEmail = emailEditText.getText().toString();
+        String inputPass = passwordEditText.getText().toString();
 
-                break;
+        if (inputEmail.isEmpty()) {
+            emailEditText.setError(getString(R.string.email_error));
+        } else if (inputPass.isEmpty()) {
+            passwordEditText.setError(getString(R.string.pass_error));
         }
-        String inputEmail = emailET.getText().toString();
-        String inputPass = passET.getText().toString();
-        if(inputEmail.isEmpty()){
-            emailET.setError(getString(R.string.email_error));
-        }else if(inputPass.isEmpty()){
-            passET.setError(getString(R.string.pass_error));
-        }else{
-            /*showEmailTV.setText(inputEmail);
-            showPassTV.setText(inputPass);*/
-            authenticateUser(inputEmail,inputPass);
+
+        switch (view.getId()) {
+            case R.id.loginButton:
+                authenticateCheck(inputEmail, inputPass);
+                break;
+            case R.id.regButton:
+                // Write Code
+                break;
         }
     }
 
-    public void handleClick(View view) {
-
-    }
-
-    View.OnClickListener listener = new View.OnClickListener() {
+    // Clear Action Button
+    View.OnClickListener clearListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Toast.makeText(MainActivity.this, "test", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "Clear Button", Toast.LENGTH_SHORT).show();
         }
     };
 }

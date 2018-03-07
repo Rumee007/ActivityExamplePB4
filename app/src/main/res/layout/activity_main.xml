@@ -8,40 +8,51 @@
     tools:context="com.example.mobileapp.activityexamplepb4.MainActivity">
 
     <EditText
-        android:id="@+id/emailValue"
+        android:id="@+id/emailText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="email address"
         android:inputType="textEmailAddress" />
+
     <EditText
-        android:id="@+id/passValue"
+        android:id="@+id/passwordText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="enter password"
-        android:inputType="textPassword"/>
+        android:inputType="textPassword" />
+
     <Button
-        android:id="@+id/lgnBtn"
+        android:id="@+id/loginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/login_btn"
-        android:textAllCaps="false"/>
+        android:textAllCaps="false" />
+
     <Button
-        android:id="@+id/regBtn"
+        android:id="@+id/regButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/reg_btn"
-        android:textAllCaps="false"/>
+        android:textAllCaps="false" />
+
     <TextView
-        android:id="@+id/showEmail"
+        android:id="@+id/showEmailTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        android:textSize="25sp" />
+
     <TextView
-        android:id="@+id/showPass"
+        android:id="@+id/showPasswordTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="25sp"
-        />
+        android:textSize="25sp" />
+
+    <Button
+        android:id="@+id/clearButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/clr_btn"
+        android:textAllCaps="false" />
 
 </LinearLayout>

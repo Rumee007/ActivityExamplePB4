@@ -1,6 +1,7 @@
 package com.example.mobileapp.activityexamplepb4;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by Mobile App on 2/9/2018.
@@ -8,18 +9,25 @@ import java.io.Serializable;
 
 public class Student implements Serializable {
     private String name;
-    private int age;
+    private String email;
+    private List<Student> studentList;
 
-    public Student(String name, int age) {
+    public Student(String name, String email) {
         this.name = name;
-        this.age = age;
+        this.email = email;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getAge() {
-        return age;
+    public String getEmail() {
+        return email;
     }
+
+    public List addStudent(String name, String email) {
+        studentList.add(new Student(name, email));
+        return studentList;
+    }
+
 }
