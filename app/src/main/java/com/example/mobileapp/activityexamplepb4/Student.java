@@ -13,7 +13,7 @@ import java.util.List;
 public class Student implements Serializable {
     private String email;
     private String password;
-    private List<Student> studentList = new LinkedList<>();
+    private List<Student> studentList;
 
     private static final String TAG = MainActivity.class.getSimpleName();
 

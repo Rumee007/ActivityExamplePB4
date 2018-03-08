@@ -12,9 +12,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private List<Student> studentList = new LinkedList<>();
     private EditText emailEditText, passwordEditText;
     private TextView showEmailTextView, showPasswordTextView;
     private Button loginButton, regButton, clearButton;
@@ -54,8 +57,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String email = emailEditText.getText().toString();
         String password = passwordEditText.getText().toString();
         Student student = new Student(email, password);
-        student.addStudent(student);
-        Log.i(TAG, "student.addStudent(student) " + student.getStudentList().size());
+        studentList.add(student);
+        Log.i(TAG, "" + "studentList :" +studentList.size());
+        for (Student student1 : studentList) {
+            Log.i(TAG, student1.getEmail());
+        }
     }
 
 
