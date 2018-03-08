@@ -1,6 +1,9 @@
 package com.example.mobileapp.activityexamplepb4;
 
+import android.util.Log;
+
 import java.io.Serializable;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -8,26 +11,45 @@ import java.util.List;
  */
 
 public class Student implements Serializable {
-    private String name;
     private String email;
-    private List<Student> studentList;
+    private String password;
+    private List<Student> studentList = new LinkedList<>();
 
-    public Student(String name, String email) {
-        this.name = name;
+    private static final String TAG = MainActivity.class.getSimpleName();
+
+    public Student(String email, String password) {
         this.email = email;
-    }
-
-    public String getName() {
-        return name;
+        this.password = password;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public List addStudent(String name, String email) {
-        studentList.add(new Student(name, email));
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<Student> getStudentList() {
         return studentList;
     }
 
+    public void setStudentList(List<Student> studentList) {
+        this.studentList = studentList;
+    }
+
+    public void addStudent(Student student) {
+        Log.i(TAG, "addStudent :" + student);
+        studentList.add(student);
+    }
+
 }
+

@@ -37,16 +37,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Call OnClickListener | implements View.OnClickListener
         loginButton.setOnClickListener(this);
 
-        // Direct call OnClickListener
+        // Direct call OnClickListener | Action - Reg Button
         regButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                addStudent();
                 Toast.makeText(MainActivity.this, "Reg Button", Toast.LENGTH_SHORT).show();
             }
         });
 
         // Create View OnClickListener
         clearButton.setOnClickListener(clearListener);
+    }
+
+    private void addStudent() {
+        String email = emailEditText.getText().toString();
+        String password = passwordEditText.getText().toString();
+        Student student = new Student(email, password);
+        student.addStudent(student);
+        Log.i(TAG, "student.addStudent(student) " + student.getStudentList().size());
     }
 
 
@@ -108,6 +117,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     View.OnClickListener clearListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            emailEditText.setText("");
+            passwordEditText.getText().clear();
             Toast.makeText(MainActivity.this, "Clear Button", Toast.LENGTH_SHORT).show();
         }
     };
