@@ -17,12 +17,12 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private List<Student> studentList = new LinkedList<>();
     private EditText emailEditText, passwordEditText;
     private TextView showEmailTextView, showPasswordTextView;
     private Button loginButton, regButton, clearButton;
-    private static final String TAG = MainActivity.class.getSimpleName();
 
+    private List<Student> studentList = new LinkedList<>();
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,34 +36,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         loginButton = findViewById(R.id.loginButton);
         regButton = findViewById(R.id.regButton);
         clearButton = findViewById(R.id.clearButton);
-
         // Call OnClickListener | implements View.OnClickListener
         loginButton.setOnClickListener(this);
-
         // Direct call OnClickListener | Action - Reg Button
         regButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addStudent();
-                Toast.makeText(MainActivity.this, "Reg Button", Toast.LENGTH_SHORT).show();
+                if (addStudent()){
+                    Toast.makeText(MainActivity.this, "Reg Success", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(MainActivity.this, "Reg Failed", Toast.LENGTH_SHORT).show();
+                }
             }
         });
-
         // Create View OnClickListener
         clearButton.setOnClickListener(clearListener);
     }
 
-    private void addStudent() {
+    private boolean addStudent() {
         String email = emailEditText.getText().toString();
         String password = passwordEditText.getText().toString();
         Student student = new Student(email, password);
-        studentList.add(student);
-        Log.i(TAG, "" + "studentList :" +studentList.size());
-        for (Student student1 : studentList) {
-            Log.i(TAG, student1.getEmail());
+        if(!studentList.add(student)){
+            return false;
         }
+        Log.i(TAG, "" + "studentList :" +studentList.size());
+        return true;
     }
-
 
     public void loginUser(View view) {
         String inputEmail = emailEditText.getText().toString();
@@ -76,6 +75,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             /*showEmailTV.setText(inputEmail);
             showPassTV.setText(inputPass);*/
             authenticateCheck(inputEmail, inputPass);
+        }
+    }
+
+    // Action : Login Button
+    @Override
+    public void onClick(View view) {
+        Log.i(TAG, "Login Button action...");
+        String inputEmail = emailEditText.getText().toString();
+        String inputPass = passwordEditText.getText().toString();
+        if (inputEmail.isEmpty()) {
+            emailEditText.setError(getString(R.string.email_error));
+        } else if (inputPass.isEmpty()) {
+            passwordEditText.setError(getString(R.string.pass_error));
+        }
+        switch (view.getId()) {
+            case R.id.loginButton:
+                authenticateCheck(inputEmail, inputPass);
+                break;
+            case R.id.regButton:
+                // Write Code
+                break;
         }
     }
 
@@ -92,30 +112,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
         } else {
             Toast.makeText(this, getString(R.string.authentication_error), Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    // Action : Login Button
-    @Override
-    public void onClick(View view) {
-        Log.i(TAG, "Login Button action...");
-
-        String inputEmail = emailEditText.getText().toString();
-        String inputPass = passwordEditText.getText().toString();
-
-        if (inputEmail.isEmpty()) {
-            emailEditText.setError(getString(R.string.email_error));
-        } else if (inputPass.isEmpty()) {
-            passwordEditText.setError(getString(R.string.pass_error));
-        }
-
-        switch (view.getId()) {
-            case R.id.loginButton:
-                authenticateCheck(inputEmail, inputPass);
-                break;
-            case R.id.regButton:
-                // Write Code
-                break;
         }
     }
 
